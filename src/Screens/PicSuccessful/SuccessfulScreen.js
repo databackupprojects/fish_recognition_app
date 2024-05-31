@@ -14,9 +14,11 @@ import LinearGradient from 'react-native-linear-gradient';
 
 
 
-const SuccessfulScreen = ({ visible, closeModal}) => {
+const SuccessfulScreen = ({ visible, closeModal,imageURl}) => {
 
     // const [modalVisible, setModalVisible] = useState(false);
+
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",imageURl)
 
 
 
@@ -37,7 +39,7 @@ const SuccessfulScreen = ({ visible, closeModal}) => {
 
                     <View style={styles.modalView}>
                         <View style={{ top: responsiveHeight(-5),width:responsiveWidth(90)}}>
-                            <TouchableOpacity style={styles.icon1}>
+                            <TouchableOpacity style={styles.icon1} onPress={()=> closeModal()}>
                                 <Close name="closecircle" size={25} color="#F81111" />
                             </TouchableOpacity>
                         </View>
@@ -45,7 +47,7 @@ const SuccessfulScreen = ({ visible, closeModal}) => {
                             Identification Successful !
                         </Text>
                         <Image
-                            source={require('../../assets/Images/Fish1.png')}
+                            source={imageURl ? {uri:imageURl} : require('../../assets/Images/Fish1.png')}
                             style={styles.image}
                         />
                         <View  >
@@ -137,11 +139,11 @@ const SuccessfulScreen = ({ visible, closeModal}) => {
                         </View>
 
 
-                        <View style={styles.button}>
+                        <TouchableOpacity onPress={()=> closeModal()} style={styles.button}>
                             <Text style={styles.save}>
                                 Save
                             </Text>
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
