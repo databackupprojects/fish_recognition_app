@@ -15,13 +15,25 @@ const BottomTab = () => {
  
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        showLabel: false, 
-        style:{
+
+
+    screenOptions={{
+      tabBarShowLabel: false,
+      tabBarStyle: [
+        {
           borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
-        }
-      }}
+        },
+        null,
+      ],
+    }}
+      // tabBarOptions={{
+      //   showLabel: false, 
+      //   style:{
+      //     borderTopLeftRadius: 20,
+      //       borderTopRightRadius: 20,
+      //   }
+      // }}
 
       // screenOptions={{
       //   tabBarShowLabel: false,
