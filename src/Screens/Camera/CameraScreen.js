@@ -1,50 +1,25 @@
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Button, Modal, Image, StyleSheet, TouchableOpacity, Text, Platform, PermissionsAndroid, ScrollView,Alert } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+import { View, Modal, Image, TouchableOpacity, Text,Alert } from 'react-native';
+
 import {  launchImageLibrary } from 'react-native-image-picker';
-import styles from './Style';
 import { RNCamera } from 'react-native-camera';
-import Feather from 'react-native-vector-icons/Feather';
-import {
-  responsiveHeight,
-  responsiveWidth,
-  responsiveFontSize
-} from "react-native-responsive-dimensions";
+import {responsiveHeight,responsiveWidth,responsiveFontSize} from "react-native-responsive-dimensions";
 import Close from 'react-native-vector-icons/AntDesign';
 import Spinner from 'react-native-loading-spinner-overlay';
-import SuccessfulScreen from '../PicSuccessful/SuccessfulScreen';
 
+import styles from './Style';
+import SuccessfulScreen from '../PicSuccessful/SuccessfulScreen';
 
 const Camera = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
- const[Fishmodal,setFishmodal]=useState(false)
-  const [isPreview, setIsPreview] = useState(false);
-  // const cameraRef = useRef(null);
+  const[Fishmodal,setFishmodal]=useState(false)
+  const [image,setImage]=useState("")
   const cameraRef = useRef(null);
   const [spinner, setSpinner] = useState(false);
 
   const CloseFishModal=()=>{
     setFishmodal(false)
   }
-
-  const handleClose = () => {
-    setModalVisible(false); // Close the
-    if (cameraRef.current) {
-      cameraRef.current.pausePreview(); // Pause the camera preview
-    }
-  };
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
@@ -54,7 +29,7 @@ const Camera = ({ navigation }) => {
     const options = {
        mediaType: 'photo', 
       };
-  launchImageLibrary(options,async (response) => { 
+   launchImageLibrary(options,async (response) => { 
     if (response.didCancel){ 
       console.log('User cancelled image picker');
      }
@@ -81,8 +56,6 @@ const Camera = ({ navigation }) => {
     }
   };
 
- 
-
     const uploadImage = async uri => {
     setSpinner(true);
     const apiUrl = 'http://192.168.10.42:8000/detection/'; 
@@ -92,7 +65,6 @@ const Camera = ({ navigation }) => {
       name: 'photo.jpg',
       type: 'image/jpeg',
     });
-
     try {
       const response = await fetch(apiUrl, {
         method: 'POST',
@@ -101,21 +73,17 @@ const Camera = ({ navigation }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-
       const responseData = await response.json();
       console.log('Upload :', responseData);
       if(responseData.status == 'success'){
         setFishmodal(true)
-        console.log('Upload successful:', responseData);
-      } else if (responseData.status == 'failed') {
+        setImage(responseData?.image_path)
+        setSpinner(false);
+      } 
+      else {
         Alert.alert('Error!', responseData.error);
+        setSpinner(false);
       }
-      // else { 
-        
-      //   navigation.navigate('CornerPoints', {cornerPoints: responseData})
-      // }
-
-      setSpinner(false);
     } catch (error) {
       console.error('Upload failed:', error);
       setSpinner(false);
@@ -138,8 +106,10 @@ const Camera = ({ navigation }) => {
             buttonNegative: 'Cancel',
           }}
         >
+           {
+            Fishmodal == false && (
           <View style={{ flex: 1, marginTop: responsiveHeight(6) }}>
-            <View style={{ position: 'absolute', marginLeft: responsiveWidth(5) }}>
+              <View style={{ position: 'absolute', marginLeft: responsiveWidth(5) }}>
               <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                 <Close name="closecircle" size={25} color="#F81111" />
               </TouchableOpacity>
@@ -150,6 +120,8 @@ const Camera = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </View>
+          )
+        }
           <Modal
             animationType="slide"
             transparent={true}
@@ -159,12 +131,8 @@ const Camera = ({ navigation }) => {
             }}
           >
             <View style={styles. modalmainview}>
-              
               <View style={{flex:0.9, backgroundColor: 'white', padding: 20, borderRadius: 15, width: responsiveWidth(80), }}>
-                
                 <View style={{ flex: 0.8, justifyContent: 'center', alignItems: 'center' }}>
-                
-
                   <View style={{ flexDirection: 'row' }}>
                     <View style={{}}>
                       <Text style={{ marginTop: 10, color: '#11B3F8', fontSize: responsiveFontSize(3.8), fontWeight: '700' }}>
@@ -187,8 +155,6 @@ const Camera = ({ navigation }) => {
                     </Text>
                   </View>
                 </View>
-
-                
                 <View style={styles.buttonmainview}>
                   <View style={styles.button}>
                     <TouchableOpacity onPress={() => setModalVisible(false)}>
@@ -198,64 +164,42 @@ const Camera = ({ navigation }) => {
                     </TouchableOpacity>
                   </View>
                 </View>
-                
               </View>
-              
             </View>
           </Modal>
-
-
-
-
-          <SuccessfulScreen    visible={Fishmodal}   closeModal={CloseFishModal}/>
-
-
+          <SuccessfulScreen    visible={Fishmodal}   closeModal={CloseFishModal} imageURl={image}/>
         </RNCamera>
       </View>
       <View style={styles.bottomcontainer}>
         <View style={styles.Imageview}>
           <View style={styles.image1}>
-
-             
 <View style={{
             borderRadius: 100,
             borderWidth: 10,
             borderColor: 'white',
             position: 'absolute',
             padding:10,
-            // bottom: 8, // space from bottombar
             backgroundColor:  '#11B3F8', 
-            // left:responsiveWidth(6) 
-             
         }}>
-           
            <TouchableOpacity onPress={takePicture}>
             <Image
              style={{width:40,height:40}}   source={require('../../assets/Images/capture.png')}
               />
                </TouchableOpacity>
             </View>
-            
       <Spinner
         visible={spinner}
         textContent={'Please Wait...'}
         textStyle={{color: 'white'}}
       />
-           
           </View>
-          
           <View style={styles.image2}>
-         
-       
-
-        
         <TouchableOpacity  onPress={openGallery}>
         <Image
           style={{width:35,height:35}}
           source={require('../../assets/Images/Gallery.png')}
         />
       </TouchableOpacity>
-    
           </View>
         </View>
       </View>
