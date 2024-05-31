@@ -4,19 +4,12 @@ import {
   responsiveWidth,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
-
-
 const styles = StyleSheet.create({
-
-
   bgimage: {
     flex: 1,
-    // backgroundColor:'red'
   },
   bottomcontainer: {
     flex:0.3,
-    // 
-
   },
   collectionview: {
     width: responsiveWidth(100),
@@ -27,7 +20,6 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(12),
     borderTopStartRadius: 12,
     borderTopEndRadius: 12
-
   },
   collectiontext: {
     fontSize: responsiveFontSize(2),
@@ -35,12 +27,10 @@ const styles = StyleSheet.create({
     color: 'rgba(0, 0, 0, 1)'
   },
   View1: {
-    
     width: responsiveWidth(40),
     height: responsiveHeight(28),
     backgroundColor: '#ffffff',
     borderRadius: responsiveWidth(3),
-    // marginTop: 10,
     margin: 8,
     alignItems: 'center',
     justifyContent: 'center',
@@ -51,15 +41,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-
-
   },
   flatlistview: {
-    // flex: 1,
-    // // justifyContent:'center',
-    // alignItems: 'center',
-    
-   
   },
   scrollBar: {
     position: 'absolute',
@@ -67,42 +50,31 @@ const styles = StyleSheet.create({
     right: 0,
     width: 10, // Set scrollbar width
     borderRadius: 8,
-    // justifyContent:'center'
-
-
   },
   scrollThumb: {
     backgroundColor: 'white', // Set thumb color
     width: '90%',
     borderRadius: 2,
-
-
-
   },
   des: {
     fontSize:responsiveFontSize(1.4),
     color: '#11B3F8',
-    // marginLeft:4
   },
   
   des1: {
     fontSize:responsiveFontSize(1.4),
     color: '#0071A2',
-    // marginLeft:2,
     textAlign: 'justify'
-    
   },
   mainview: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    
     marginBottom:5
   },
   icon: {
     alignSelf: 'flex-start',
-    // marginTop: 10
   },
   modalview: {
     marginTop:responsiveHeight(5),
@@ -111,7 +83,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: responsiveWidth(90),
     height: responsiveHeight(92),
-    // flex:1
   },
   image: {
     width: responsiveWidth(80),
@@ -119,10 +90,8 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    
     right: 20,
   },
- 
   imagePlus:{
    marginTop:responsiveHeight(5),
    width:30,
@@ -130,13 +99,7 @@ const styles = StyleSheet.create({
   },
   imageother:{
     width:'80%',
-    // height:130
-
   }
-  
-
-
-
 })
 
 export default styles

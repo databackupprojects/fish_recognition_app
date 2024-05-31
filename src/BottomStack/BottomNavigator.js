@@ -1,98 +1,86 @@
-import { StyleSheet, Image,View } from 'react-native';
+import { StyleSheet, Image, View } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { CurvedBottomBar } from 'react-native-curved-bottom-bar';
 import Home from '../Screens/Homescreen/Home';
 import Cemra from '../Screens/Camera/CameraScreen';
 import Collection from '../Screens/CollectionScreen/Collection';
-import { useRoute } from '@react-navigation/native'
 import Splash from '../Screens/Splashscreen/Splash';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTab = () => {
- 
   return (
     <Tab.Navigator
+      // Customizing the tab bar options
       tabBarOptions={{
-        showLabel: false, 
-        style:{
+        showLabel: false, // Hide the labels for the tab items
+        style: {
           borderTopLeftRadius: 20,
-            borderTopRightRadius: 20,
+          borderTopRightRadius: 20, // Rounded top corners for the tab bar
         }
       }}
-
-      // screenOptions={{
-      //   tabBarShowLabel: false,
-      //   tabBarStyle: {
-      //     display: 'flex',
-      //   },
-      // }}
-      
     >
+      {/* Home Tab Screen */}
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          headerShown: false,
-          
+          headerShown: false, // Hide the header for the Home screen
           tabBarIcon: ({ focused }) => (
             <Image
               source={require('../assets/Images/HomeIcon.png')}
               style={{
                 width: 24,
                 height: 24,
-                tintColor: focused ? '#11B3F8' : '#D9D9D9',
+                tintColor: focused ? '#11B3F8' : '#D9D9D9', // Change color based on focus
               }}
             />
           ),
-          // tabBarLabel: null, // Hide the label for this tab
         }}
       />
+      
+      {/* Camera Tab Screen */}
       <Tab.Screen
         name="Camera"
         component={Cemra}
-        
-        
         options={{
-          headerShown: false,
+          headerShown: false, // Hide the header for the Camera screen
           tabBarStyle: {
-            display: "none",
+            display: "none", // Hide the tab bar for the Camera screen
           },
-          
-          
-
-          tabBarIcon: (props) => <View style={{
-            borderRadius: 100,
-            borderWidth: 10,
-            borderColor: 'white',
-            position: 'absolute',
-            padding:10,
-            bottom: 8, // space from bottombar
-            backgroundColor: props.focused ? 'green' : '#11B3F8',
-        }}>
-            <AntDesign name="camerao" color="white" size={40} /></View>
-
-          
+          tabBarIcon: (props) => (
+            <View style={{
+              borderRadius: 100,
+              borderWidth: 10,
+              borderColor: 'white',
+              position: 'absolute',
+              padding: 10,
+              bottom: 8, // Space from bottom bar
+              backgroundColor: props.focused ? 'green' : '#11B3F8',
+            }}>
+              <AntDesign name="camerao" color="white" size={40} />
+            </View>
+          )
         }}
       />
+      
+      {/* Collection Tab Screen */}
       <Tab.Screen
         name="Collection"
         component={Collection}
         options={{
-          headerShown: false,
+          headerShown: false, // Hide the header for the Collection screen
           tabBarIcon: ({ focused }) => (
             <Image
               source={require('../assets/Images/user.png')}
               style={{
                 width: 23,
                 height: 23,
-                tintColor: focused ? '#11B3F8' : '#D9D9D9',
+                tintColor: focused ? '#11B3F8' : '#D9D9D9', // Change color based on focus
               }}
             />
           ),
-          tabBarLabel: null, // Hide the label for this tab
         }}
       />
     </Tab.Navigator>
@@ -100,7 +88,3 @@ const BottomTab = () => {
 };
 
 export default BottomTab;
-
-
-
-
