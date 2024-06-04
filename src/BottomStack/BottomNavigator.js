@@ -8,6 +8,8 @@ import Cemra from '../Screens/Camera/CameraScreen';
 import Collection from '../Screens/CollectionScreen/Collection';
 import { useRoute } from '@react-navigation/native'
 import Splash from '../Screens/Splashscreen/Splash';
+import Stack from '../boot/StackNavigator/Stack';
+import Result from '../boot/StackNavigator/Stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +21,7 @@ const BottomTab = () => {
 
     screenOptions={{
       tabBarShowLabel: false,
+      tabBarHideOnKeyboard: true,
       tabBarStyle: [
         {
           borderTopLeftRadius: 20,
@@ -44,8 +47,8 @@ const BottomTab = () => {
       
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="Result"
+        component={Result}
         options={{
           headerShown: false,
           

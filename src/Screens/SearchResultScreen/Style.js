@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     // flex: 1,
     // // justifyContent:'center',
     // alignItems: 'center',
-    
+  
    
   },
   scrollBar: {
@@ -130,7 +130,11 @@ const styles = StyleSheet.create({
   },
   imageother:{
     width:'80%',
-  
+    // height:130
+
+  },
+  textcapture:{
+    color:'rgba(0, 113, 162, 1)'
   }
   
 
