@@ -15,6 +15,7 @@ import Gallery from './src/Screens/GalleryScreen/Gallery';
 import SuccessfulScreen from './src/Screens/PicSuccessful/SuccessfulScreen';
 import BOttomTab from './src/BottomStack/BottomNavigator';
 import Cemra from './src/Screens/Camera/CameraScreen';
+import SearchResult from './src/Screens/SearchResultScreen/SearchResult';
 
 
 
@@ -55,6 +56,13 @@ const App = () => {
           component={Cemra}
           options={{headerShown: false}}
         />  
+
+        {/* <Stack.Screen
+        name='SearchResult'
+        options={{headerShown:false}}
+        component={SearchResult}
+        
+        /> */}
 {/*       
         <Stack.Screen
       name='Collection'

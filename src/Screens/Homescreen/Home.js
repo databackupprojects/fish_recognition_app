@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, Modal, Text, TextInput, TouchableOpacity, View, FlatList, Alert } from 'react-native'
 import React, { useState } from 'react'
 
 import styles from './Style'

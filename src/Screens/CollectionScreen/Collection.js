@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { 
     Text,
-    View, 
+    View,
     Image,
     ImageBackground,
     StatusBar,
@@ -23,9 +23,16 @@ const Collection = ({ navigation }) => {
     const [selectedItem, setSelectedItem] = useState(null);
     // State to control the visibility of the modal
     const [modalVisible, setModalVisible] = useState(false);
+
+
+ const handleimage=(item)=>{
+    if(item.id === data[data.length - 1].id )
+        navigation.navigate('Camera')
     
-    // Handle item click to display details in the modal
+ }
+
     const handleItemClick = (item) => {
+
         setSelectedItem(item);
         setModalVisible(true)
     };
@@ -56,7 +63,18 @@ const Collection = ({ navigation }) => {
                         </Text>
                     </View>
                 </TouchableOpacity>
-            </View>
+                    <TouchableOpacity onPress={() => handleItemClick(item)}>
+                        <Text style={styles.textcapture}>
+                            {item.title}
+                        </Text>
+                    </TouchableOpacity>
+                    <Text style={{ color: 'rgba(17, 179, 248, 1)' }}>
+                        {item.description}
+                    </Text>
+
+                </View>
+
+            
         )
     }
 
@@ -77,6 +95,9 @@ const Collection = ({ navigation }) => {
                     // Handle scroll event to update custom scroll bar
                     onScroll={handleScroll}
                 />
+
+
+
             </View>
             <View style={[styles.scrollBar, { backgroundColor: '#11B3F8', height: '41%' }]}>
                 <View style={[styles.scrollThumb, { height: `${scrollPercentage}%` }]} />

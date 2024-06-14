@@ -6,6 +6,8 @@ import Home from '../Screens/Homescreen/Home';
 import Cemra from '../Screens/Camera/CameraScreen';
 import Collection from '../Screens/CollectionScreen/Collection';
 import Splash from '../Screens/Splashscreen/Splash';
+import Stack from '../boot/StackNavigator/Stack';
+import Result from '../boot/StackNavigator/Stack';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,8 +25,8 @@ const BottomTab = () => {
     >
       {/* Home Tab Screen */}
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="Result"
+        component={Result}
         options={{
           headerShown: false, // Hide the header for the Home screen
           tabBarIcon: ({ focused }) => (
